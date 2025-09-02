@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+  <div class="todo-app">
+    <h2>To-Do List <img src="{{ url_for('static', filename='images/icon.png') }}"></h2>
+
+    <!-- Task input form -->
+    <form class="row" method="POST">
+      <input type="text" name="task" id="input-box" placeholder="Add your task">
+      <button type="submit">Add</button>
+    </form>
+
+    <ul id="list-container">
+  {% for task in tasks %}
+    <li class="{% if task.done %}checked{% endif %}">
+      <form action="{{ url_for('toggle', task_id=loop.index0) }}" method="POST" style="display: inline;">
+        <input type="checkbox" onchange="this.form.submit()" style="position: absolute; left: 8px; top: 12px; width: 28px; height: 28px; opacity: 0; cursor: pointer;" {% if task.done %}checked{% endif %}>
+      </form>
+      {{ task.text }}
+      <a href="{{ url_for('delete', task_id=loop.index0) }}" class="delete-btn">🗑️</a>
+    </li>
+  {% else %}
+    <li>No tasks yet!</li>
+  {% endfor %}
+</ul>
+  </div>
+</div>
+
+</body>
+</html>
