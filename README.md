@@ -10,7 +10,7 @@ A simple and stylish To-Do List web application built using **Flask**, **HTML/CS
 - 🗑️ Delete existing tasks
 - ✔️ Mark tasks as done 
 - 🎨 Clean, gradient-based UI design
-- 🧠 State stored in memory (no database for simplicity)
+
 
 ---
 
